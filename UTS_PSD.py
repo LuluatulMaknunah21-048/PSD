@@ -72,7 +72,7 @@ if selected=='PCA':
     audio=st.file_uploader("Upload AUDIO disini ", type=['mp3','wav'])
     if audio :
         st.audio(audio)
-        genre = st.radio("PILIH MODEL : ",('PCA9', 'PCA8',','PCA6','PCA5','PCA4','PCA3','PCA2','PCA1'))
+        genre = st.radio("PILIH MODEL : ",('PCA9', 'PCA8','PCA6','PCA5','PCA4','PCA3','PCA2','PCA1'))
         y, sr = librosa.load(audio)
         # UNTUK MENGHITUNG NILAI ZCR
         zcr_mean = np.mean(librosa.feature.zero_crossing_rate(y=y))
