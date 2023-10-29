@@ -325,7 +325,7 @@ if button:
     column= df.columns[df.eq(1).any()]
     st.write(df[column])
     if cshap!='Silahkan Pilih'and csur!='Silahkan Pilih'and cc!='Silahkan Pilih'and brus!='Silahkan Pilih'and odor!='Silahkan Pilih'and ga!='Silahkan Pilih'and gsp!='Silahkan Pilih'and gsz!='Silahkan Pilih'and gc!='Silahkan Pilih'and ssh!='Silahkan Pilih'and sr!='Silahkan Pilih'and ssar!='Silahkan Pilih'and scar!='Silahkan Pilih'and scbr!='Silahkan Pilih'and vt!='Silahkan Pilih'and vc!='Silahkan Pilih'and rn!='Silahkan Pilih'and rt!='Silahkan Pilih'and spc!='Silahkan Pilih'and popul!='Silahkan Pilih'and habi!='Silahkan Pilih':
-        with open('PCA7rf.pkl', 'rb') as pca:
+        with open('PCA7.pkl', 'rb') as pca:
             loadpca= pickle.load(pca)
         f_pca=loadpca.transform(df)
         st.write(f_pca)
