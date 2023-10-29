@@ -72,7 +72,7 @@ if selected=='PCA':
     audio=st.file_uploader("Upload AUDIO disini ", type=['mp3','wav'])
     if audio :
         st.audio(audio)
-        genre = st.radio("PILIH MODEL : ",('PCA9', 'PCA8', 'PCA7','PCA6','PCA5','PCA4','PCA3','PCA2','PCA1'))
+        genre = st.radio("PILIH MODEL : ",('PCA9', 'PCA8',','PCA6','PCA5','PCA4','PCA3','PCA2','PCA1'))
         y, sr = librosa.load(audio)
         # UNTUK MENGHITUNG NILAI ZCR
         zcr_mean = np.mean(librosa.feature.zero_crossing_rate(y=y))
@@ -128,17 +128,6 @@ if selected=='PCA':
             for predi in predik:
                 st.write('SUARA DENGAN EMOSI : ', predi)
         
-        if genre=='PCA7':
-            with open('PCA7.pkl', 'rb') as pca:
-                loadpca= pickle.load(pca)
-            untukpca=loadpca.transform(datanormal)
-            st.write("=========> CIRI YANG SUDAH DI REDUKSI DIMENSI MENJADI 7 FITUR <=========")
-            st.write(untukpca)
-            with open('knnpca7.pkl', 'rb') as modelpca:
-                knnpca= pickle.load(modelpca)
-            predik=knnpca.predict(untukpca)
-            for predi in predik:
-                st.write('SUARA DENGAN EMOSI : ', predi)
                 
         if genre=='PCA6':
             with open('PCA6.pkl', 'rb') as pca:
