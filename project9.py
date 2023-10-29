@@ -29,7 +29,7 @@ stalk_color_below_ring=['Silahkan Pilih','brown','buff','cinnamon','gray','orang
 veiltype=['Silahkan Pilih','partial']
 veil_color=['Silahkan Pilih','brown','orange','white','yellow']
 ring_number=['Silahkan Pilih','none','one','two']
-ringtype=['Silahkan Pilih','cobwebby','evanescent','flaring','large','none','pendant','sheathing','zone']
+ringtype=['Silahkan Pilih','evanescent','flaring','large','none','pendant',]
 spore_print_color=['Silahkan Pilih','black','brown','buff','chocolate','green','orange','purple','white','yellow']
 population=['Silahkan Pilih','abundant','clustered','numerous','scattered','several','solitary']
 habitat=['Silahkan Pilih','grasses','leaves','meadows','paths','urban','waste','woods']
@@ -207,7 +207,10 @@ with col2:
     if scar=='white':
         df['stalk-color-above-ring_w']=1
     if scar=='yellow':
-        df['stalk-color-above-ring_y']=1 
+        df['stalk-color-above-ring_y']=1
+    if scar=='orange':
+        df['stalk-color-above-ring_o']=1
+    
     
     scbr=st.selectbox('PILIH Stalk Color Below Ring',stalk_color_below_ring)
     if scbr=='brown':
@@ -230,7 +233,9 @@ with col2:
         df['stalk-color-below-ring_w']=1
     if scbr=='yellow':
         df['stalk-color-below-ring_y']=1 
-    
+    if scar=='orange':
+        df['stalk-color-above-ring_o']=1 
+        
     vt=st.selectbox('PILIH Veil Type',veiltype)
     if vt=='partial':
         df['veil-type_p']=1
@@ -254,8 +259,6 @@ with col2:
         df['ring-number_t']=1
     
     rt=st.selectbox('PILIH Ring Type',ringtype)
-    if rt=='cobwebby':
-        df['ring-type_c']=1
     if rt=='evanescent':
         df['ring-type_e']=1
     if rt=='flaring':
@@ -266,11 +269,7 @@ with col2:
         df['ring-type_n']=1
     if rt=='pendant':
         df['ring-type_p']=1
-    if rt=='sheathing':
-        df['ring-type_s']=1
-    if rt=='zone':
-        df['ring-type_z']=1
-    
+
     spc=st.selectbox('PILIH Spore Print Color',spore_print_color)
     if spc =='black':
         df['spore-print-color_k']=1
@@ -326,7 +325,7 @@ if button:
     column= df.columns[df.eq(1).any()]
     st.write(df[column])
     if cshap!='Silahkan Pilih'and csur!='Silahkan Pilih'and cc!='Silahkan Pilih'and brus!='Silahkan Pilih'and odor!='Silahkan Pilih'and ga!='Silahkan Pilih'and gsp!='Silahkan Pilih'and gsz!='Silahkan Pilih'and gc!='Silahkan Pilih'and ssh!='Silahkan Pilih'and sr!='Silahkan Pilih'and ssar!='Silahkan Pilih'and scar!='Silahkan Pilih'and scbr!='Silahkan Pilih'and vt!='Silahkan Pilih'and vc!='Silahkan Pilih'and rn!='Silahkan Pilih'and rt!='Silahkan Pilih'and spc!='Silahkan Pilih'and popul!='Silahkan Pilih'and habi!='Silahkan Pilih':
-        with open('PCA7.pkl', 'rb') as pca:
+        with open('PCA7rf.pkl', 'rb') as pca:
             loadpca= pickle.load(pca)
         f_pca=loadpca.transform(df)
         st.write(f_pca)
