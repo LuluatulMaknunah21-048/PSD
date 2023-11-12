@@ -27,7 +27,7 @@ selected=option_menu(
     })
 if selected=='Data':
     st.title('DESI (Deteksi Emosi)')
-    st.write('dataset diambil dari : https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess?resource=download Dataset audio ini akan di ektraksi menjadi beberapa fitur numeric ZCR dan RMSE,Dataset ini berisi serangkaian 200 kata target yang diucapkan dalam frasa pembawa Katakan kata _ oleh dua aktris (berusia 26 dan 64 tahun), dan rekaman dibuat untuk setiap kata dengan menggambarkan tujuh emosi berbeda (marah, jijik, takut, bahagia, kaget menyenangkan, sedih, dan netral). Totalnya terdapat 2800 titik data (file audio) dalam dataset ini. Penyusunan dataset ini dilakukan dengan cara bahwa setiap dari dua aktris perempuan dan emosi yang mereka tunjukkan terkandung dalam folder tersendiri. Di dalamnya, terdapat file audio untuk semua 200 kata target. Format file audio ini adalah format WAV.Dengan kata lain, dataset ini memberikan akses ke rekaman suara dari dua aktris perempuan yang berbeda usia, masing-masing mengucapkan 200 kata target dalam tujuh berbagai emosi. Setiap kombinasi kata dan emosi memiliki rekaman suara sendiri-sendiri, dan semuanya tersusun dengan baik dalam struktur folder yang jelas. Format file audio yang digunakan adalah WAV.')
+    st.write(dataset diambil dari : https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess?resource=download Dataset audio ini akan di ektraksi menjadi beberapa fitur numeric ZCR dan RMSE,Dataset ini berisi serangkaian 200 kata target yang diucapkan dalam frasa pembawa Katakan kata _ oleh dua aktris (berusia 26 dan 64 tahun), dan rekaman dibuat untuk setiap kata dengan menggambarkan tujuh emosi berbeda (marah, jijik, takut, bahagia, kaget menyenangkan, sedih, dan netral). Totalnya terdapat 2800 titik data (file audio) dalam dataset ini. Penyusunan dataset ini dilakukan dengan cara bahwa setiap dari dua aktris perempuan dan emosi yang mereka tunjukkan terkandung dalam folder tersendiri. Di dalamnya, terdapat file audio untuk semua 200 kata target. Format file audio ini adalah format WAV.Dengan kata lain, dataset ini memberikan akses ke rekaman suara dari dua aktris perempuan yang berbeda usia, masing-masing mengucapkan 200 kata target dalam tujuh berbagai emosi. Setiap kombinasi kata dan emosi memiliki rekaman suara sendiri-sendiri, dan semuanya tersusun dengan baik dalam struktur folder yang jelas. Format file audio yang digunakan adalah WAV.')
 
 if selected=='Implementasi':
     st.title('DESI (Deteksi Emosi)')
@@ -70,7 +70,7 @@ if selected=='Implementasi':
         untukpca=loadpca.transform(datanormal)
         st.write("=========> CIRI YANG SUDAH DI REDUKSI DIMENSI MENJADI 9 FITUR <=========")
         st.write(untukpca)
-        with open('rfpca9.pkl', 'rb') as modelpca:
+        with open('knnpca.pkl', 'rb') as modelpca:
             knnpca= pickle.load(modelpca)
         predik=knnpca.predict(untukpca)
         for predi in predik:
