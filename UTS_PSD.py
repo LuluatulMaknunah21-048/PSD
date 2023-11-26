@@ -65,12 +65,12 @@ if selected=='Implementasi':
         datanormal=loadscal.transform(fitur)
         st.write("=========> CIRI YANG SUDAH DI NORMALISASI <=========")
         st.write(datanormal)
-        with open('PCArf9.pkl', 'rb') as pca:
+        with open('PCAknn9.pkl', 'rb') as pca:
             loadpca= pickle.load(pca)
         untukpca=loadpca.transform(datanormal)
         st.write("=========> CIRI YANG SUDAH DI REDUKSI DIMENSI MENJADI 9 FITUR <=========")
         st.write(untukpca)
-        with open('knnpca.pkl', 'rb') as modelpca:
+        with open('knnpca9fix.pkl', 'rb') as modelpca:
             knnpca= pickle.load(modelpca)
         predik=knnpca.predict(untukpca)
         for predi in predik:
