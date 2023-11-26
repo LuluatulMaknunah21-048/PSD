@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'utscode_rapi';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -136,30 +138,15 @@ const thebe_selector_output = ".output, .cell_output"
     
   </div>
   
-                    <div class="sidebar-primary-items__start sidebar-primary__section">
-                    <div class="sidebar-primary-item">
-
-
-                        <a class="navbar-brand logo" href="intro.html">
-
-
-
-
-
-
-
-
-
-
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+                        <a class="navbar-brand logo" href="#">
                             <img src="_static/logo.jpeg" class="logo__image only-light" alt="My sample book - Home" />
                             <script>
-                                document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);
+                                document.write(`<img src="_static/logo.jpeg" class="logo__image only-dark" alt="My sample book - Home"/>`);
                             </script>
-
-
                         </a>
                     </div>
-                    
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -171,10 +158,16 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="jamur.html">KLASIFIKASI KELAS JAMUR DAPAT DIMAKAN atau BERACUN Berdasarkan metode terbaik dari pycaret</a></li>
-<li class="toctree-l1"><a class="reference internal" href="https://klasifikasijamur.streamlit.app/">Aplikasi Jamur</a>
+<li class="toctree-l1"><a class="reference internal" href="jamur.html"><strong>KLASIFIKASI KELAS JAMUR DAPAT DIMAKAN atau BERACUN Berdasarkan metode terbaik dari pycaret</strong></a></li>
+
+
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>KLASIFIKASI EMOSI menggunakan metode K-Nearest Neighbor</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="https://luluatulmaknunahutspsd.streamlit.app/">Aplikasi Deteksi Emosi</a></a></li>
+
+
+
 
 
 
@@ -404,10 +397,19 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>KLASIFIKASI EMOSI menggunakan metode K-Nearest Neighbor</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instalasi-library-librosa"><strong>Instalasi Library Librosa</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis"><strong>TUJUAN ANALISIS</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-data"><strong>Deskripsi Data</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-statistik-sinyal-yang-akan-dijadikan-fitur"><strong>Menghitung statistik sinyal yang akan dijadikan fitur</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing"><strong>PRE-PROCESSING</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-audio"><strong>EKSTRAKSI AUDIO</strong></a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-standard-scaler"><strong>NORMALISASI STANDARD SCALER</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan"><strong>PEMODELAN</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pca"><strong>PCA</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-streamlit"><strong>APLIKASI STREAMLIT</strong></a></li>
 </ul>
 
             </nav>
@@ -422,14 +424,66 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-emosi-menggunakan-metode-k-nearest-neighbor">
 <h1><strong>KLASIFIKASI EMOSI menggunakan metode K-Nearest Neighbor</strong><a class="headerlink" href="#klasifikasi-emosi-menggunakan-metode-k-nearest-neighbor" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tujuan-analisis">
+<h1><strong>TUJUAN ANALISIS</strong><a class="headerlink" href="#tujuan-analisis" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Klasifikasi Emosi berdasarkan rekaman suara</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="deskripsi-data">
+<h1><strong>Deskripsi Data</strong><a class="headerlink" href="#deskripsi-data" title="Permalink to this heading">#</a></h1>
 <p>dataset diambil dari : <a class="reference external" href="https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess?resource=download">https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess?resource=download</a>
 Dataset audio ini akan di ektraksi menjadi beberapa fitur numeric ZCR dan RMSE.
 Dataset ini berisi serangkaian 200 kata target yang diucapkan dalam frasa pembawa “Katakan kata _” oleh dua aktris (berusia 26 dan 64 tahun), dan rekaman dibuat untuk setiap kata dengan menggambarkan tujuh emosi berbeda (marah, jijik, takut, bahagia, kaget menyenangkan, sedih, dan netral). Totalnya terdapat 2800 titik data (file audio) dalam dataset ini.</p>
 <p>Penyusunan dataset ini dilakukan dengan cara bahwa setiap dari dua aktris perempuan dan emosi yang mereka tunjukkan terkandung dalam folder tersendiri. Di dalamnya, terdapat file audio untuk semua 200 kata target. Format file audio ini adalah format WAV.</p>
 <p>Dengan kata lain, dataset ini memberikan akses ke rekaman suara dari dua aktris perempuan yang berbeda usia, masing-masing mengucapkan 200 kata target dalam tujuh berbagai emosi. Setiap kombinasi kata dan emosi memiliki rekaman suara sendiri-sendiri, dan semuanya tersusun dengan baik dalam struktur folder yang jelas. Format file audio yang digunakan adalah WAV.</p>
+<section id="menghitung-statistik-sinyal-yang-akan-dijadikan-fitur">
+<h2><strong>Menghitung statistik sinyal yang akan dijadikan fitur</strong><a class="headerlink" href="#menghitung-statistik-sinyal-yang-akan-dijadikan-fitur" title="Permalink to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Zero Crossing Rate (ZCR):</strong> <br>
+Zero Crossing Rate (ZCR) adalah metrik yang mengukur seberapa sering sinyal audio melintasi nilai nol per detik. Ini memberikan wawasan tentang perubahan arah atau fluktuasi dalam gelombang suara. Komponen ZCR mencakup: <br></p>
+<ul class="simple">
+<li><p><em>zcr_mean:</em> Nilai rata-rata ZCR, mencerminkan tingkat perubahan rata-rata dalam sinyal. <br></p></li>
+<li><p><em>zcr_median:</em> Nilai median ZCR, merupakan nilai tengah dalam distribusi ZCR. <br></p></li>
+<li><p><em>zcr_std_dev:</em> Deviasi standar dari ZCR, mengukur sejauh mana nilai ZCR tersebar dari nilai rata-rata. <br></p></li>
+<li><p><em>zcr_kurtosis:</em> Kurtosis dari distribusi ZCR, memberikan informasi tentang kekontrasan antara ekor dan puncak distribusi. <br></p></li>
+<li><p><em>zcr_skew:</em> Skewness dari distribusi ZCR, mengindikasikan asimetri distribusi ZCR. <br></p></li>
+</ul>
+</li>
+<li><p><strong>Root Mean Square Error (RMSE):</strong> <br>
+Root Mean Square Error (RMSE) adalah metrik evaluasi yang mengukur rata-rata perbedaan antara nilai aktual dan nilai yang diprediksi, dalam konteks ini, terkait dengan amplitudo sinyal audio. Komponen RMSE melibatkan: <br></p>
+<ul class="simple">
+<li><p><em>rmse:</em> Nilai RMSE dari sinyal, memberikan ukuran kesalahan total antara nilai aktual dan nilai prediksi. <br></p></li>
+<li><p><em>rmse_median:</em> Nilai median dari RMSE, menunjukkan nilai tengah dalam distribusi RMSE. <br></p></li>
+<li><p><em>rmse_std_dev:</em> Deviasi standar dari RMSE, mengukur sebaran nilai RMSE dari nilai rata-rata. <br></p></li>
+<li><p><em>rmse_kurtosis:</em> Kurtosis dari distribusi RMSE, memberikan informasi tentang bentuk dan karakteristik distribusi kesalahan. <br></p></li>
+<li><p><em>rmse_skew:</em> Skewness dari distribusi RMSE, mengindikasikan asimetri distribusi RMSE. <br></p></li>
+</ul>
+<p><strong>RUMUS :</strong><br>
+<br>
+<span class="math notranslate nohighlight">\(\text{{Mean}} = \frac{1}{n} \sum_{i=1}^{n} y_i\)</span> <br>
+<br>
+<span class="math notranslate nohighlight">\(\text{{Median}} = \begin{cases}
+   y_{(\frac{n}{2})} &amp; \text{{if }} n \text{{ is odd}} \\
+   \frac{1}{2} (y_{(\frac{n}{2})} + y_{(\frac{n}{2} + 1)}) &amp; \text{{if }} n \text{{ is even}}
+\end{cases}\)</span> <br>
+<br>
+<span class="math notranslate nohighlight">\(\text{{Standard Deviasi}} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \text{{Mean}})^2}\)</span> <br>
+<br>
+<span class="math notranslate nohighlight">\(\text{{Kurtosis}} = \frac{\frac{1}{n} \sum_{i=1}^{n} (y_i - \text{{Mean}})^4}{\left(\frac{1}{n} \sum_{i=1}^{n} (y_i - \text{{Mean}})^2\right)^2} - 3\)</span> <br>
+<br>
+<span class="math notranslate nohighlight">\(\text{{Skewness}} = \frac{\frac{1}{n} \sum_{i=1}^{n} (y_i - \text{{Mean}})^3}{\left(\frac{1}{n} \sum_{i=1}^{n} (y_i - \text{{Mean}})^2\right)^{3/2}}\)</span> <br>
+<br></p>
+</li>
+</ol>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="instalasi-library-librosa">
-<h1><strong>Instalasi Library Librosa</strong><a class="headerlink" href="#instalasi-library-librosa" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pre-processing">
+<h1><strong>PRE-PROCESSING</strong><a class="headerlink" href="#pre-processing" title="Permalink to this heading">#</a></h1>
+<p>sebelum melakukan analisis data kita akan melakukan ekstraksi audio menjadi beberapa fitur numerik dan akan dilakukan standarisasi data dalam rentang 0-1 hal ini di lakukan di pre-processing</p>
+<section id="ekstraksi-audio">
+<h2><strong>EKSTRAKSI AUDIO</strong><a class="headerlink" href="#ekstraksi-audio" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">librosa</span>
@@ -437,10 +491,11 @@ Dataset ini berisi serangkaian 200 kata target yang diucapkan dalam frasa pembaw
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: librosa in /usr/local/lib/python3.10/dist-packages (0.10.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -cipy (/usr/local/lib/python3.10/dist-packages)</span>
+Requirement already satisfied: librosa in /usr/local/lib/python3.10/dist-packages (0.10.1)
 Requirement already satisfied: audioread&gt;=2.1.9 in /usr/local/lib/python3.10/dist-packages (from librosa) (3.0.1)
 Requirement already satisfied: numpy!=1.22.0,!=1.22.1,!=1.22.2,&gt;=1.20.3 in /usr/local/lib/python3.10/dist-packages (from librosa) (1.23.5)
-Requirement already satisfied: scipy&gt;=1.2.0 in /usr/local/lib/python3.10/dist-packages (from librosa) (1.11.3)
+Requirement already satisfied: scipy&gt;=1.2.0 in /usr/local/lib/python3.10/dist-packages (from librosa) (1.10.1)
 Requirement already satisfied: scikit-learn&gt;=0.20.0 in /usr/local/lib/python3.10/dist-packages (from librosa) (1.2.2)
 Requirement already satisfied: joblib&gt;=0.14 in /usr/local/lib/python3.10/dist-packages (from librosa) (1.3.2)
 Requirement already satisfied: decorator&gt;=4.3.0 in /usr/local/lib/python3.10/dist-packages (from librosa) (4.4.2)
@@ -452,16 +507,22 @@ Requirement already satisfied: typing-extensions&gt;=4.1.1 in /usr/local/lib/pyt
 Requirement already satisfied: lazy-loader&gt;=0.1 in /usr/local/lib/python3.10/dist-packages (from librosa) (0.3)
 Requirement already satisfied: msgpack&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from librosa) (1.0.7)
 Requirement already satisfied: llvmlite&lt;0.42,&gt;=0.41.0dev0 in /usr/local/lib/python3.10/dist-packages (from numba&gt;=0.51.0-&gt;librosa) (0.41.1)
-Requirement already satisfied: platformdirs&gt;=2.5.0 in /usr/local/lib/python3.10/dist-packages (from pooch&gt;=1.0-&gt;librosa) (3.11.0)
+Requirement already satisfied: platformdirs&gt;=2.5.0 in /usr/local/lib/python3.10/dist-packages (from pooch&gt;=1.0-&gt;librosa) (4.0.0)
 Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.10/dist-packages (from pooch&gt;=1.0-&gt;librosa) (23.2)
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/local/lib/python3.10/dist-packages (from pooch&gt;=1.0-&gt;librosa) (2.31.0)
 Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from scikit-learn&gt;=0.20.0-&gt;librosa) (3.2.0)
-Requirement already satisfied: cffi&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from soundfile&gt;=0.12.1-&gt;librosa) (1.16.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: cffi&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from soundfile&gt;=0.12.1-&gt;librosa) (1.16.0)
 Requirement already satisfied: pycparser in /usr/local/lib/python3.10/dist-packages (from cffi&gt;=1.0-&gt;soundfile&gt;=0.12.1-&gt;librosa) (2.21)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (3.4)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (2.0.7)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (2023.7.22)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -cipy (/usr/local/lib/python3.10/dist-packages)</span>
+
 </pre></div>
 </div>
 </div>
@@ -515,10 +576,6 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.1
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>from google.colab import drive: Baris ini mengimpor modul drive dari paket google.colab. Modul ini menyediakan fungsionalitas untuk mengakses Google Drive dari Google Colab.</p></li>
-<li><p>drive.mount(‘/content/drive’): Baris ini memanggil fungsi mount dari modul drive. Fungsi ini digunakan untuk mengaitkan Google Drive dengan sesi Google Colab. Argumen ‘/content/drive’ adalah direktori tempat Google Drive akan dimount di dalam sesi Colab.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> /content/drive/MyDrive/PSD/emosi
@@ -531,11 +588,6 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.1
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li></li>
-<li><p>/content/drive/MyDrive/PSD/emosi: Ini adalah path (alamat) dari direktori yang akan dijadikan direktori kerja. Dengan menjalankan baris ini, direktori kerja sekarang akan diubah menjadi /content/drive/MyDrive/PSD/emosi.</p></li>
-</ol>
-<p>Jadi, setelah menjalankan baris ini, semua operasi file dan folder selanjutnya akan dilakukan di dalam direktori /content/drive/MyDrive/PSD/emosi pada Google Drive.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import library untuk berinteraksi dengan sistem operasi (OS)</span>
@@ -552,13 +604,6 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.1
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>import os: Pustaka ini memungkinkan program Python berinteraksi dengan sistem operasi (OS), seperti membuat, menghapus, atau memindahkan file dan direktori.</p></li>
-<li><p>import librosa: Librosa adalah pustaka Python yang umum digunakan untuk analisis sinyal suara. Ini menyediakan fungsi untuk ekstraksi fitur suara, pemrosesan suara, dan tugas-tugas terkait suara lainnya.</p></li>
-<li><p>import numpy as np: NumPy adalah pustaka dasar untuk komputasi numerik di Python. Di sini, kita mengimpor NumPy dan memberinya alias np, yang umum digunakan sebagai konvensi.</p></li>
-<li><p>import pandas as pd: Pandas adalah pustaka Python yang digunakan untuk analisis dan manipulasi data tabular. DataFrame, struktur data utama Pandas, sering digunakan untuk menyimpan dan mengelola data.</p></li>
-<li><p>from scipy.stats import skew, kurtosis, mode: Scipy adalah pustaka ilmiah untuk Python, dan di sini, kita mengimpor beberapa fungsi statistik seperti skewness, kurtosis, dan mode dari pustaka scipy.stats. Fungsi ini digunakan untuk menghitung beberapa statistik deskriptif dari distribusi data.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#variael yang menyimpan list nama folder yang berisi dataset emosi</span>
@@ -599,23 +644,6 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.1
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>y, sr = librosa.load(audio_path): Menggunakan pustaka librosa untuk memuat file audio dari path yang diberikan. y adalah time series data suara, dan sr adalah tingkat sampel (sampling rate) dari audio.</p></li>
-<li><p>Perhitungan statistik Zero-Crossing Rate (ZCR):
-zcr_mean: Nilai rata-rata Zero-Crossing Rate.
-zcr_median: Nilai median Zero-Crossing Rate.
-zcr_std_dev: Standar deviasi Zero-Crossing Rate.
-zcr_kurtosis: Nilai kurtosis dari distribusi Zero-Crossing Rate.
-zcr_skew: Nilai skewness dari distribusi Zero-Crossing Rate.
-Perhitungan statistik Root Mean Square Error (RMSE):</p></li>
-<li><p>perhitungan RMSE
-rmse: Nilai rata-rata Root Mean Square Error.
-rmse_median: Nilai median Root Mean Square Error.
-rmse_std_dev: Standar deviasi Root Mean Square Error.
-rmse_kurtosis: Nilai kurtosis dari distribusi Root Mean Square Error.
-rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
-<li><p>return daftar nilai-nilai statistik. Nilai-nilai ini dapat digunakan untuk menganalisis karakteristik sinyal suara dan dapat dimasukkan ke dalam struktur data yang sesuai, seperti DataFrame dari Pandas.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span><span class="p">[]</span> <span class="c1">#variabel yang akan digunakan untuk fitur</span>
@@ -625,26 +653,29 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">folders</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loop melalui setiap folder dalam daftar &#39;folders&#39;</span>
+<span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">folders</span><span class="p">:</span>
+    <span class="c1"># Membuat path lengkap untuk folder saat ini</span>
     <span class="n">folder_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="c1"># Loop melalui setiap file dalam folder saat ini</span>
     <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+
+        <span class="c1"># Memeriksa apakah file berakhir dengan ekstensi &#39;.wav&#39;</span>
         <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.wav&#39;</span><span class="p">):</span>
+
+            <span class="c1"># Membuat path lengkap untuk file audio saat ini</span>
             <span class="n">audio_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+            <span class="c1"># Menghitung statistik dari file audio dan menyimpannya dalam variabel &#39;statistics&#39;</span>
             <span class="n">statistics</span> <span class="o">=</span> <span class="n">calculate_statistics</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+
+            <span class="c1"># Menambahkan label folder dan statistik audio ke dalam daftar fitur &#39;features&#39;</span>
             <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">folder</span><span class="p">]</span> <span class="o">+</span> <span class="n">statistics</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>for folder in folders:: Loop ini akan iterasi melalui setiap elemen dalam variabel folders. Setiap elemen mungkin merupakan nama folder yang berisi file audio.</p></li>
-<li><p>folder_path = f’{folder}’: Ini mendefinisikan variabel folder_path yang merupakan path lengkap ke folder saat ini. Pada contoh ini, sepertinya tidak diperlukan karena folder seharusnya sudah berisi path yang lengkap.</p></li>
-<li><p>for filename in os.listdir(folder_path):: Ini mengiterasi melalui setiap file dalam folder yang ditentukan oleh folder_path.</p></li>
-<li><p>if filename.endswith(‘.wav’):: Pernyataan ini memastikan bahwa hanya file dengan ekstensi .wav yang akan diproses.</p></li>
-<li><p>audio_path = os.path.join(folder_path, filename): Ini menggabungkan folder_path dan filename untuk mendapatkan path lengkap ke file audio.</p></li>
-<li><p>statistics = calculate_statistics(audio_path): Memanggil fungsi calculate_statistics untuk menghitung statistik dari file audio yang sedang diproses.</p></li>
-<li><p>features.append([folder] + statistics): Menambahkan hasil statistik ke dalam list features. Di sini, [folder] + statistics digunakan untuk menyertakan informasi folder (kategori) sebagai bagian dari data fitur yang dikumpulkan.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;ZCR Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;ZCR Median&#39;</span><span class="p">,</span> <span class="s1">&#39;ZCR Std Dev&#39;</span><span class="p">,</span> <span class="s1">&#39;ZCR Kurtosis&#39;</span><span class="p">,</span> <span class="s1">&#39;ZCR Skew&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Median&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Std Dev&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Kurtosis&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE Skew&#39;</span><span class="p">]</span>
@@ -653,10 +684,6 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>columns: Variabel ini menyimpan list yang berisi nama-nama kolom yang akan digunakan untuk DataFrame. Kolom pertama disebut ‘Label’, dan sisanya adalah nama-nama statistik atau fitur yang dihitung sebelumnya.</p></li>
-<li><p>df = pd.DataFrame(features, columns=columns): Membuat DataFrame menggunakan Pandas. Parameter features adalah list yang berisi hasil fitur atau statistik yang dikumpulkan sebelumnya, dan columns adalah nama kolom yang akan dijadikan DataFrame.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menampilkan file CSV</span>
@@ -666,7 +693,7 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-43f8a008-0dca-4c90-8f32-b9645b3147ec" class="colab-df-container">
+  <div id="df-265e47c2-d36c-4794-9cb0-6bdff5312ae2" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -860,7 +887,7 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-43f8a008-0dca-4c90-8f32-b9645b3147ec')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-265e47c2-d36c-4794-9cb0-6bdff5312ae2')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -912,12 +939,12 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-43f8a008-0dca-4c90-8f32-b9645b3147ec button.colab-df-convert');
+        document.querySelector('#df-265e47c2-d36c-4794-9cb0-6bdff5312ae2 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-43f8a008-0dca-4c90-8f32-b9645b3147ec');
+        const element = document.querySelector('#df-265e47c2-d36c-4794-9cb0-6bdff5312ae2');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -937,8 +964,8 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
   </div>
 
 
-<div id="df-37036c10-0b3f-466f-845e-e9b5b57a55bf">
-  <button class="colab-df-quickchart" onclick="quickchart('df-37036c10-0b3f-466f-845e-e9b5b57a55bf')"
+<div id="df-71545887-3089-4d16-a412-b88bcb9dc2cb">
+  <button class="colab-df-quickchart" onclick="quickchart('df-71545887-3089-4d16-a412-b88bcb9dc2cb')"
             title="Suggest charts"
             style="display:none;">
 
@@ -1057,7 +1084,7 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
     }
     (() => {
       let quickchartButtonEl =
-        document.querySelector('#df-37036c10-0b3f-466f-845e-e9b5b57a55bf button');
+        document.querySelector('#df-71545887-3089-4d16-a412-b88bcb9dc2cb button');
       quickchartButtonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
     })();
@@ -1067,6 +1094,25 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
   </div>
 </div></div>
 </div>
+<ol class="arabic simple">
+<li><p><strong>Label</strong> <br></p></li>
+</ol>
+<ul class="simple">
+<li><p>OAF_angry: Ekspresi marah dari pembicara OAF. <br></p></li>
+<li><p>OAF_disgust: Ekspresi jijik atau muak dari pembicara OAF. <br></p></li>
+<li><p>OAF_Fear: Ekspresi takut dari pembicara OAF. <br></p></li>
+<li><p>OAF_happy: Ekspresi bahagia dari pembicara OAF. <br></p></li>
+<li><p>OAF_neutral: Ekspresi netral dari pembicara OAF. <br></p></li>
+<li><p>OAF_Pleasant_surprise: Ekspresi kejutan menyenangkan dari pembicara OAF. <br></p></li>
+<li><p>OAF_Sad: Ekspresi sedih dari pembicara OAF. <br></p></li>
+<li><p>YAF_angry: Ekspresi marah dari pembicara YAF. <br></p></li>
+<li><p>YAF_disgust: Ekspresi jijik atau muak dari pembicara YAF. <br></p></li>
+<li><p>YAF_fear: Ekspresi takut dari pembicara YAF. <br></p></li>
+<li><p>YAF_happy: Ekspresi bahagia dari pembicara YAF. <br></p></li>
+<li><p>YAF_neutral: Ekspresi netral dari pembicara YAF. <br></p></li>
+<li><p>YAF_Pleasant_surprise: Ekspresi kejutan menyenangkan dari pembicara YAF. <br></p></li>
+<li><p>YAF_sad: Ekspresi sedih dari pembicara YAF. <br></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#menyimpan file hasil dari ekstraksi fitur</span>
@@ -1076,17 +1122,18 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 </section>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="normalisasi-standard-scaler">
 <h1><strong>NORMALISASI STANDARD SCALER</strong><a class="headerlink" href="#normalisasi-standard-scaler" title="Permalink to this heading">#</a></h1>
 <p>StandardScaler adalah suatu metode dalam pemrosesan data yang digunakan untuk mentransformasi fitur-fitur data sehingga memiliki mean 0 dan deviasi standar 1. Ini adalah salah satu langkah umum dalam pra-pemrosesan data sebelum membangun model. Proses ini membantu menghilangkan perbedaan skala antar fitur, sehingga setiap fitur memiliki pengaruh yang sebanding pada model.</p>
-<p>Rumus Standard Scaler:</p>
-<p>z = (x - μ) / σ</p>
-<p>di mana:</p>
+<p>Rumus Standard Scaler: <br>
+<span class="math notranslate nohighlight">\(z = \frac{{x - \mu}}{{\sigma}}\)</span></p>
+<p>di mana:<br></p>
 <ul class="simple">
-<li><p>z adalah nilai yang telah di-standarisasi,</p></li>
-<li><p>x adalah nilai asli,</p></li>
-<li><p>μ adalah rata-rata dari sampel,</p></li>
-<li><p>σ adalah deviasi standar dari sampel.</p></li>
+<li><p>z adalah nilai yang telah di-standarisasi,<br></p></li>
+<li><p>x adalah nilai asli,<br></p></li>
+<li><p>μ adalah rata-rata dari sampel,<br></p></li>
+<li><p>σ adalah deviasi standar dari sampel.<br></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1098,12 +1145,6 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>from sklearn.model_selection import train_test_split: Mengimpor fungsi train_test_split dari modul model_selection di scikit-learn. Fungsi ini digunakan untuk membagi dataset menjadi subset pelatihan dan pengujian.</p></li>
-<li><p>from sklearn.preprocessing import StandardScaler: Mengimpor kelas StandardScaler dari modul preprocessing di scikit-learn. StandardScaler digunakan untuk melakukan penskalaan fitur sehingga fitur-fitur tersebut memiliki mean 0 dan varians 1.</p></li>
-<li><p>from sklearn.neighbors import KNeighborsClassifier: Mengimpor kelas KNeighborsClassifier dari modul neighbors di scikit-learn. Kelas ini digunakan untuk membuat model klasifikasi dengan algoritma K-Nearest Neighbors.</p></li>
-<li><p>from pickle import dump: Mengimpor fungsi dump dari modul pickle. dump digunakan untuk menyimpan objek Python ke dalam file, dan mungkin akan digunakan untuk menyimpan model klasifikasi setelah dilatih.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baca data dari file CSV</span>
@@ -1135,7 +1176,7 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-8c64a367-6efd-480b-9466-cca648dd43d3" class="colab-df-container">
+  <div id="df-1370d9e2-b0cb-4904-beaa-2f4ebfcee515" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1329,7 +1370,7 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-8c64a367-6efd-480b-9466-cca648dd43d3')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-1370d9e2-b0cb-4904-beaa-2f4ebfcee515')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -1381,12 +1422,12 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 
     <script>
       const buttonEl =
-        document.querySelector('#df-8c64a367-6efd-480b-9466-cca648dd43d3 button.colab-df-convert');
+        document.querySelector('#df-1370d9e2-b0cb-4904-beaa-2f4ebfcee515 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-8c64a367-6efd-480b-9466-cca648dd43d3');
+        const element = document.querySelector('#df-1370d9e2-b0cb-4904-beaa-2f4ebfcee515');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1406,8 +1447,8 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
   </div>
 
 
-<div id="df-100235b4-3720-47bb-b2b8-0989488650e0">
-  <button class="colab-df-quickchart" onclick="quickchart('df-100235b4-3720-47bb-b2b8-0989488650e0')"
+<div id="df-6ca6b864-7db1-4d23-b2d3-a56078b266fd">
+  <button class="colab-df-quickchart" onclick="quickchart('df-6ca6b864-7db1-4d23-b2d3-a56078b266fd')"
             title="Suggest charts"
             style="display:none;">
 
@@ -1526,7 +1567,7 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
     }
     (() => {
       let quickchartButtonEl =
-        document.querySelector('#df-100235b4-3720-47bb-b2b8-0989488650e0 button');
+        document.querySelector('#df-6ca6b864-7db1-4d23-b2d3-a56078b266fd button');
       quickchartButtonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
     })();
@@ -1536,17 +1577,6 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
   </div>
 </div></div>
 </div>
-<ol class="arabic simple">
-<li><p>dataknn = pd.read_csv(‘dataemosi.csv’): Membaca data dari file CSV ‘dataemosi.csv’ dan menyimpannya dalam variabel dataknn.</p></li>
-<li><p>X = dataknn.drop([‘Label’], axis=1): Memisahkan fitur (kolom-kolom kecuali ‘Label’) dari dataset dan menyimpannya dalam variabel X.</p></li>
-<li><p>y = dataknn[‘Label’]: Menyimpan label (kolom ‘Label’) dalam variabel y.</p></li>
-<li><p>X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1, test_size=0.2): Membagi data menjadi data latih dan data uji menggunakan train_test_split dengan random_state=1 dan ukuran uji sebesar 20% dari total data.</p></li>
-<li><p>scaler = StandardScaler(): Membuat objek scaler untuk normalisasi fitur.</p></li>
-<li><p>scaler.fit(X_train): Melatih scaler pada data latih.</p></li>
-<li><p>dump(scaler, open(‘scaler.pkl’, ‘wb’)): Menyimpan scaler ke dalam file ‘scaler.pkl’ untuk digunakan nanti.</p></li>
-<li><p>X_train_scaled = scaler.transform(X_train): Normalisasi data latih menggunakan scaler yang telah dilatih.</p></li>
-<li><p>dataknn: Menampilkan dataset dataknn setelah pemrosesan.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
@@ -1557,11 +1587,6 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>import pickle: Mengimpor modul pickle untuk membaca dan menulis objek Python dalam bentuk biner.</p></li>
-<li><p>with open(‘scaler.pkl’, ‘rb’) as standarisasi: Membuka file ‘scaler.pkl’ dalam mode membaca biner (‘rb’) dan menggunakan statement ‘with’ untuk memastikan bahwa file akan ditutup secara otomatis setelah blok kode di dalamnya selesai dieksekusi.</p></li>
-<li><p>‘loadscal = pickle.load(standarisasi)’: Menggunakan ‘pickle.load()’ untuk membaca objek scaler yang telah disimpan dalam file ‘scaler.pkl’ dan menyimpannya dalam variabel ‘loadscal’.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_scaled</span><span class="o">=</span><span class="n">loadscal</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="c1">#normalisasi X testing dari hasil normalisasi X train yang disimpan dalam model</span>
@@ -1572,18 +1597,32 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pemodelan">
 <h1><strong>PEMODELAN</strong><a class="headerlink" href="#pemodelan" title="Permalink to this heading">#</a></h1>
+<p><strong>K-Nearest Neighbors (KNN):</strong><br></p>
+<p><strong>Konsep:</strong><br>
+K-Nearest Neighbors (KNN) adalah algoritma pembelajaran mesin sederhana yang digunakan untuk klasifikasi dan regresi. Konsep dasar KNN adalah memprediksi label suatu sampel berdasarkan mayoritas label dari K tetangga terdekatnya.</p>
+<p><strong>Langkah-langkah KNN:</strong><br></p>
+<p>1.Menentukan Jarak:<br> Hitung jarak (biasanya Euclidean) antara sampel yang akan diprediksi dengan semua sampel dalam set pelatihan.<br>
+2. Memilih Tetangga:<br> Pilih K tetangga terdekat berdasarkan jarak yang dihitung.<br>
+3. Menentukan Mayoritas:<br> Untuk klasifikasi, atribut target dari sampel baru diberikan label yang paling umum di antara K tetangga tersebut. Untuk regresi, nilai target dari sampel baru dihitung sebagai rata-rata atau median dari nilai target K tetangga tersebut.<br>
+<strong>Parameter Utama:</strong><br>
+Nilai K: <br>Jumlah tetangga terdekat yang akan dipertimbangkan. Nilai K yang tepat dapat mempengaruhi kinerja algoritma.<br>
+<strong>Rumus:</strong> <br>
+Rumus mencari jarak dengan euclidean : <br>
+<span class="math notranslate nohighlight">\(\text{Euclidean Distance} = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}\)</span> <br>
+<strong>Rumus Klasifikasi KNN :</strong> <br>
+<span class="math notranslate nohighlight">\(\hat{y} = \text{majority}(\{y_i \,|\, (x_i, y_i) \in \text{k-nearest neighbors of } x\})\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span><span class="n">confusion_matrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">pickle</span> <span class="kn">import</span> <span class="n">dump</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>from sklearn.metrics import accuracy_score, confusion_matrix: Mengimpor fungsi accuracy_score dan confusion_matrix dari modul sklearn.metrics.</p>
-<ol class="arabic simple">
-<li><p><strong>accuracy_score</strong>: Fungsi ini digunakan untuk mengukur tingkat akurasi dari suatu model klasifikasi. Akurasi adalah rasio jumlah prediksi yang benar terhadap total jumlah prediksi. Fungsi ini menerima dua parameter: nilai sebenarnya (y_true) dan nilai prediksi (y_pred), dan mengembalikan nilai akurasi.</p></li>
-<li><p><strong>confusion_matrix</strong>: Fungsi ini menghitung matriks kebingungan (confusion matrix) yang digunakan untuk mengevaluasi kinerja suatu model klasifikasi. Matriks kebingungan memberikan gambaran tentang seberapa baik model dapat mengklasifikasikan instans-instans pada kategori tertentu. Matriks ini memiliki empat sel, yaitu True Positive (TP), True Negative (TN), False Positive (FP), dan False Negative (FN). Fungsi ini juga menerima dua parameter: nilai sebenarnya (y_true) dan nilai prediksi (y_pred), dan mengembalikan matriks kebingungan dalam bentuk array.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="mi">30</span>
@@ -1610,31 +1649,22 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>K = 30: Mengatur nilai K (jumlah tetangga) maksimum yang akan dievaluasi.</p></li>
-<li><p>acc = np.zeros((K-1)): Membuat array dengan panjang K-1 untuk menyimpan nilai akurasi pada setiap iterasi.</p></li>
-<li><p>for n in range(1, K, 2):: Melakukan loop untuk nilai K dari 1 hingga K dengan langkah 2 (menggunakan bilangan ganjil).</p></li>
-<li><p>knn = KNeighborsClassifier(n_neighbors=n, metric=”euclidean”).fit(X_train_scaled, y_train): Membuat model k-NN dengan jumlah tetangga (k) tertentu dan metrik Euclidean, lalu melatih model tersebut dengan data latih yang telah dinormalisasi.</p></li>
-<li><p>y_pred = knn.predict(X_test_scaled): Melakukan prediksi pada data uji menggunakan model k-NN yang telah dilatih.</p></li>
-<li><p>acc[n-1] = accuracy_score(y_test, y_pred): Menghitung dan menyimpan akurasi pada array acc untuk nilai k saat ini.</p></li>
-<li><p>print(‘Akurasi terbaik adalah’, acc.max(), ‘dengan nilai k =’, acc.argmax() + 1): Menampilkan nilai akurasi tertinggi dan nilai k yang sesuai.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span> <span class="mi">13</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier(n_estimators=1000, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestClassifier</label><div class="sk-toggleable__content"><pre>RandomForestClassifier(n_estimators=1000, random_state=42)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-4 {color: black;background-color: white;}#sk-container-id-4 pre{padding: 0;}#sk-container-id-4 div.sk-toggleable {background-color: white;}#sk-container-id-4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-4 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-4 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-4 div.sk-item {position: relative;z-index: 1;}#sk-container-id-4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-4 div.sk-item::before, #sk-container-id-4 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-4 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-4 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-4 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-4 div.sk-label-container {text-align: center;}#sk-container-id-4 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-4 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsClassifier(metric=&#x27;euclidean&#x27;, n_neighbors=13)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier(metric=&#x27;euclidean&#x27;, n_neighbors=13)</pre></div></div></div></div></div></div></div>
 </div>
-<ol class="arabic simple">
-<li><p>from sklearn.ensemble import RandomForestClassifier: Mengimpor kelas RandomForestClassifier dari modul sklearn.ensemble.</p></li>
-<li><p>clf = RandomForestClassifier(n_estimators=1000, random_state=42): Membuat objek RandomForestClassifier dengan 1000 pohon keputusan (n_estimators) dan seed random (random_state) yang ditetapkan ke 42.</p></li>
-<li><p>clf.fit(X_train_scaled, y_train): Melatih model menggunakan data latih yang telah dinormalisasi (X_train_scaled) dan label data latih (y_train).</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Melakukan prediksi pada data uji yang telah dinormalisasi menggunakan model RandomForestClassifier</span>
@@ -1651,147 +1681,143 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
        &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_fear&#39;, &#39;YAF_happy&#39;,
        &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
        &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;, &#39;YAF_sad&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;,
        &#39;OAF_disgust&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;,
        &#39;YAF_pleasant_surprised&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_sad&#39;, &#39;OAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;, &#39;OAF_angry&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;,
        &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_sad&#39;, &#39;OAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_fear&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;YAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_happy&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;, &#39;YAF_sad&#39;, &#39;YAF_fear&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_neutral&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_fear&#39;, &#39;YAF_sad&#39;,
-       &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_happy&#39;, &#39;OAF_sad&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;OAF_fear&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_happy&#39;, &#39;YAF_angry&#39;,
        &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_fear&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;,
-       &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;YAF_sad&#39;,
-       &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;YAF_fear&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
+       &#39;YAF_sad&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;,
+       &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;OAF_sad&#39;,
+       &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;,
+       &#39;OAF_fear&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;YAF_happy&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_sad&#39;,
+       &#39;OAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;OAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
        &#39;OAF_pleasant_surprise&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;,
        &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
        &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;,
+       &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_pleasant_surprised&#39;,
        &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_fear&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;OAF_neutral&#39;, &#39;YAF_fear&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_fear&#39;, &#39;YAF_neutral&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_fear&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_angry&#39;,
        &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_fear&#39;,
        &#39;YAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;OAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;YAF_disgust&#39;,
-       &#39;YAF_happy&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_fear&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;,
        &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;YAF_fear&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;, &#39;YAF_sad&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;,
+       &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;YAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;,
        &#39;OAF_neutral&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;,
        &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;,
        &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;, &#39;OAF_sad&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_fear&#39;, &#39;YAF_angry&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_fear&#39;,
-       &#39;OAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;,
+       &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_fear&#39;, &#39;OAF_angry&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_fear&#39;, &#39;YAF_angry&#39;,
+       &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;,
+       &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;,
        &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;,
        &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;OAF_angry&#39;, &#39;YAF_disgust&#39;,
-       &#39;YAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_angry&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_fear&#39;], dtype=object)
+       &#39;YAF_happy&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_fear&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;, &#39;OAF_angry&#39;, &#39;OAF_fear&#39;],
+      dtype=object)
 </pre></div>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>y_pred = clf.predict(X_test_scaled): Menggunakan model RandomForestClassifier yang telah dilatih untuk melakukan prediksi pada data uji yang telah dinormalisasi (X_test_scaled). Hasil prediksi disimpan dalam variabel y_pred.</p></li>
-<li><p>y_pred: Menampilkan hasil prediksi, yang merupakan prediksi kelas untuk setiap sampel dalam data uji.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung akurasi antara nilai sebenarnya dan nilai prediksi</span>
@@ -1802,27 +1828,49 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.802491103202847
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.7206405693950177
 </pre></div>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>accuracy = accuracy_score(y_test, y_pred): Menggunakan fungsi accuracy_score dari modul sklearn.metrics untuk menghitung akurasi antara nilai sebenarnya (y_test) dan nilai prediksi (y_pred).</p></li>
-<li><p>print(“Akurasi:”, accuracy): Menampilkan nilai akurasi pada output. Akurasi merupakan rasio jumlah prediksi yang benar terhadap total jumlah prediksi pada data uji.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dump</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;m_knn.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;knnfix.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>dump(knn, open(‘m_knn.pkl’, ‘wb’)): Menggunakan fungsi dump dari modul pickle untuk menyimpan model k-NN (knn) ke dalam file ‘m_knn.pkl’ dalam mode penulisan biner (‘wb’). Ini akan menghasilkan file yang berisi model k-NN yang dapat digunakan kembali di lain waktu.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pca">
 <h1><strong>PCA</strong><a class="headerlink" href="#pca" title="Permalink to this heading">#</a></h1>
 <p>Principal Component Analysis (PCA) adalah suatu metode dalam statistika multivariat yang digunakan untuk mengubah dataset yang kompleks menjadi bentuk yang lebih sederhana dan lebih mudah diinterpretasikan. Tujuan utama dari PCA adalah mereduksi dimensi data, sehingga kita dapat mempertahankan sebanyak mungkin informasi yang dapat dijelaskan oleh sejumlah komponen utama atau principal components.</p>
+<ol class="arabic">
+<li><p><strong>Hitung Matriks Kovarian:</strong><br></p>
+<p><span class="math notranslate nohighlight">\( \text{Cov}(\mathbf{X}) = \frac{1}{n-1} \sum_{i=1}^{n} (\mathbf{X}_i - \bar{\mathbf{X}})(\mathbf{X}_i - \bar{\mathbf{X}})^T \)</span></p>
+<p>di mana:</p>
+</li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}_i \text{ adalah vektor data poin ke-i,}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{\mathbf{X}} \text{ adalah vektor rata-rata dari semua data,}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n \text{ adalah jumlah data poin.} \)</span></p></li>
+</ul>
+<ol class="arabic" start="2">
+<li><p><strong>Hitung Nilai dan Vektor Eigen:</strong> <br>
+Menghitung nilai eigen (λ) dan vektor eigen (v) dari matriks kovarian.<br></p>
+<p><span class="math notranslate nohighlight">\( \text{Cov}(\mathbf{X})\mathbf{v} = \lambda\mathbf{v} \)</span></p>
+</li>
+<li><p><strong>Pilih Principal Components:</strong><br> Principal components dipilih berdasarkan nilai eigen tertinggi. Misalnya, jika kita ingin mereduksi dimensi menjadi k, kita memilih k vektor eigen dengan nilai eigen tertinggi.<br></p></li>
+<li><p><strong>Transformasi Data:</strong> <br> Data asli (X) dapat diproyeksikan ke dalam ruang yang baru (Y) yang terdiri dari principal components yang dipilih.<br></p>
+<p><span class="math notranslate nohighlight">\( \mathbf{Y} = \mathbf{X} \mathbf{V} \)</span></p>
+<p>di mana:</p>
+</li>
+</ol>
+<ul class="simple">
+<li><p>(Y) : matriks yang berisi data yang telah diproyeksikan ke dalam ruang principal components,<br></p></li>
+<li><p>(X) : matriks data asli,<br></p></li>
+<li><p>(V) : matriks yang berisi vektor eigen sebagai kolom-kolomnya.<br></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span> <span class="k">as</span> <span class="n">sklearnPCA</span>
@@ -1844,34 +1892,22 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>from sklearn.decomposition import PCA as sklearnPCA: Mengimpor kelas PCA dari modul sklearn.decomposition dan memberikan alias sklearnPCA.</p></li>
-<li><p>sklearn_pca = sklearnPCA(n_components=9): Membuat objek PCA dengan mengatur jumlah komponen utama menjadi 9.</p></li>
-<li><p>X_train_pca = sklearn_pca.fit_transform(X_train_scaled): Melakukan transformasi PCA pada data latih yang telah dinormalisasi (X_train_scaled) dan menyimpan hasilnya dalam X_train_pca.</p></li>
-<li><p>type(X_train_pca): Menampilkan tipe data dari X_train_pca. Hasilnya seharusnya berupa numpy array atau matriks hasil reduksi dimensi menggunakan PCA.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dump</span><span class="p">(</span><span class="n">sklearn_pca</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;PCArf9.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dump</span><span class="p">(</span><span class="n">sklearn_pca</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;PCAknn9.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>dump(sklearn_pca, open(‘PCArf9.pkl’, ‘wb’)): Menggunakan fungsi dump dari modul pickle untuk menyimpan model PCA (sklearn_pca) ke dalam file ‘PCArf9.pkl’ dalam mode penulisan biner (‘wb’). Ini akan menghasilkan file yang berisi model PCA dengan konfigurasi 9 komponen utama yang dapat digunakan kembali di lain waktu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;PCArf9.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pca</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;PCAknn9.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pca</span><span class="p">:</span>
    <span class="n">loadpca</span><span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pca</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>import pickle: Mengimpor modul pickle untuk membaca dan menulis objek Python dalam bentuk biner.</p></li>
-<li><p>with open(‘PCArf9.pkl’, ‘rb’) as pca:: Membuka file ‘PCArf9.pkl’ dalam mode membaca biner (‘rb’) dan menggunakan statement with untuk memastikan bahwa file akan ditutup secara otomatis setelah blok kode di dalamnya selesai dieksekusi.</p></li>
-<li><p>loadpca = pickle.load(pca): Menggunakan pickle.load() untuk membaca objek PCA yang telah disimpan dalam file ‘PCArf9.pkl’ dan menyimpannya dalam variabel loadpca.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Melakukan transformasi PCA pada data uji yang telah dinormalisasi menggunakan model PCA yang telah dimuat</span>
@@ -1888,28 +1924,17 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>X_test_pca = loadpca.transform(X_test_scaled): Menggunakan model PCA yang telah dimuat (loadpca) untuk melakukan transformasi PCA pada data uji yang telah dinormalisasi (X_test_scaled) dan menyimpan hasilnya dalam X_test_pca.</p></li>
-<li><p>X_test_pca.shape: Menampilkan bentuk (shape) dari X_test_pca, yang akan memberikan informasi tentang jumlah baris dan kolom dalam matriks hasil transformasi PCA.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="c1"># Membuat objek RandomForestClassifier dengan 1000 pohon keputusan dan seed random 42</span>
-<span class="n">clfr</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clfr</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span> <span class="mi">13</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">)</span>
 <span class="c1"># Melatih model menggunakan data latih yang telah mengalami reduksi dimensi PCA</span>
 <span class="n">clfr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_pca</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier(n_estimators=1000, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestClassifier</label><div class="sk-toggleable__content"><pre>RandomForestClassifier(n_estimators=1000, random_state=42)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-5 {color: black;background-color: white;}#sk-container-id-5 pre{padding: 0;}#sk-container-id-5 div.sk-toggleable {background-color: white;}#sk-container-id-5 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-5 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-5 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-5 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-5 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-5 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-5 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-5 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-5 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-5 div.sk-item {position: relative;z-index: 1;}#sk-container-id-5 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-5 div.sk-item::before, #sk-container-id-5 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-5 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-5 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-5 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-5 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-5 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-5 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-5 div.sk-label-container {text-align: center;}#sk-container-id-5 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-5 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsClassifier(metric=&#x27;euclidean&#x27;, n_neighbors=13)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" checked><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier(metric=&#x27;euclidean&#x27;, n_neighbors=13)</pre></div></div></div></div></div></div></div>
 </div>
-<ol class="arabic simple">
-<li><p>from sklearn.ensemble import RandomForestClassifier: Mengimpor kelas RandomForestClassifier dari modul sklearn.ensemble.</p></li>
-<li><p>clfr = RandomForestClassifier(n_estimators=1000, random_state=42): Membuat objek RandomForestClassifier dengan 1000 pohon keputusan (n_estimators) dan seed random (random_state) yang ditetapkan ke 42.</p></li>
-<li><p>clfr.fit(X_train_pca, y_train): Melatih model menggunakan data latih yang telah mengalami reduksi dimensi PCA (X_train_pca) dan label data latih (y_train). Model RandomForestClassifier akan belajar dari data ini untuk membuat prediksi pada tahap selanjutnya.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Melakukan prediksi pada data uji yang telah mengalami reduksi dimensi PCA menggunakan model RandomForestClassifier</span>
@@ -1922,150 +1947,147 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;YAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;,
        &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_fear&#39;, &#39;YAF_happy&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;,
-       &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_fear&#39;, &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;YAF_fear&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_angry&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_fear&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_angry&#39;, &#39;OAF_happy&#39;, &#39;YAF_happy&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;, &#39;YAF_sad&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_happy&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
+       &#39;YAF_sad&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;,
+       &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_disgust&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_disgust&#39;,
        &#39;OAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
        &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;,
        &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;,
        &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_fear&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;OAF_fear&#39;, &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;OAF_sad&#39;,
+       &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;,
+       &#39;OAF_fear&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;,
        &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_happy&#39;,
        &#39;OAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_sad&#39;,
-       &#39;YAF_angry&#39;, &#39;YAF_fear&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_sad&#39;, &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;YAF_sad&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_disgust&#39;, &#39;OAF_angry&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;,
-       &#39;YAF_fear&#39;, &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_angry&#39;, &#39;YAF_fear&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_neutral&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;YAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_angry&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_neutral&#39;, &#39;YAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_fear&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;,
-       &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;YAF_happy&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_sad&#39;,
+       &#39;OAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;OAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_happy&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;,
+       &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_fear&#39;, &#39;YAF_neutral&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
        &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_pleasant_surprised&#39;,
        &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;, &#39;OAF_angry&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;, &#39;YAF_fear&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_angry&#39;, &#39;YAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;,
-       &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;,
-       &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_sad&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;,
-       &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;, &#39;YAF_neutral&#39;, &#39;YAF_sad&#39;,
-       &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_fear&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;,
-       &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_sad&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_angry&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;YAF_disgust&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;OAF_happy&#39;, &#39;YAF_happy&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;,
-       &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;YAF_happy&#39;, &#39;YAF_angry&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;YAF_happy&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;, &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;,
-       &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;,
-       &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;, &#39;OAF_sad&#39;, &#39;OAF_happy&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;,
-       &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_fear&#39;, &#39;OAF_angry&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_fear&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_angry&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_neutral&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;,
+       &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_sad&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_fear&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;OAF_fear&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_sad&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_fear&#39;,
+       &#39;YAF_neutral&#39;, &#39;YAF_sad&#39;, &#39;OAF_neutral&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_neutral&#39;, &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;, &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;, &#39;OAF_angry&#39;,
+       &#39;OAF_happy&#39;, &#39;OAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_sad&#39;, &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_angry&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_angry&#39;,
+       &#39;YAF_fear&#39;, &#39;YAF_angry&#39;, &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;OAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_disgust&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_disgust&#39;, &#39;YAF_sad&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;,
+       &#39;YAF_sad&#39;, &#39;OAF_angry&#39;, &#39;YAF_happy&#39;, &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_neutral&#39;, &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;OAF_disgust&#39;, &#39;YAF_neutral&#39;,
+       &#39;OAF_neutral&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_neutral&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_neutral&#39;, &#39;YAF_neutral&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;YAF_neutral&#39;, &#39;OAF_angry&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_sad&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;YAF_fear&#39;,
+       &#39;OAF_happy&#39;, &#39;YAF_disgust&#39;, &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_neutral&#39;,
+       &#39;OAF_angry&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_angry&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_happy&#39;, &#39;OAF_pleasant_surprise&#39;,
+       &#39;YAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;YAF_fear&#39;, &#39;OAF_angry&#39;,
        &#39;YAF_neutral&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_fear&#39;, &#39;YAF_angry&#39;,
        &#39;OAF_sad&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;, &#39;YAF_fear&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_fear&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_disgust&#39;,
-       &#39;YAF_happy&#39;, &#39;OAF_angry&#39;, &#39;YAF_disgust&#39;, &#39;YAF_happy&#39;,
-       &#39;OAF_pleasant_surprise&#39;, &#39;YAF_angry&#39;, &#39;OAF_neutral&#39;, &#39;OAF_angry&#39;,
-       &#39;OAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;OAF_disgust&#39;, &#39;OAF_disgust&#39;,
-       &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_disgust&#39;, &#39;OAF_sad&#39;,
-       &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
-       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_disgust&#39;, &#39;OAF_angry&#39;, &#39;OAF_fear&#39;],
+       &#39;OAF_sad&#39;, &#39;YAF_sad&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;OAF_pleasant_surprise&#39;, &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_neutral&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;YAF_disgust&#39;, &#39;YAF_fear&#39;, &#39;OAF_happy&#39;,
+       &#39;OAF_disgust&#39;, &#39;YAF_happy&#39;, &#39;OAF_angry&#39;, &#39;YAF_disgust&#39;,
+       &#39;YAF_happy&#39;, &#39;OAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;, &#39;OAF_neutral&#39;,
+       &#39;OAF_angry&#39;, &#39;OAF_sad&#39;, &#39;YAF_angry&#39;, &#39;YAF_happy&#39;, &#39;OAF_fear&#39;,
+       &#39;OAF_disgust&#39;, &#39;OAF_angry&#39;, &#39;OAF_pleasant_surprise&#39;, &#39;OAF_fear&#39;,
+       &#39;OAF_sad&#39;, &#39;OAF_fear&#39;, &#39;YAF_happy&#39;, &#39;YAF_pleasant_surprised&#39;,
+       &#39;YAF_pleasant_surprised&#39;, &#39;OAF_happy&#39;, &#39;OAF_angry&#39;, &#39;OAF_fear&#39;],
       dtype=object)
 </pre></div>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>y_prediksi = clfr.predict(X_test_pca): Menggunakan model RandomForestClassifier yang telah dilatih untuk melakukan prediksi pada data uji yang telah mengalami reduksi dimensi PCA (X_test_pca). Hasil prediksi disimpan dalam variabel y_prediksi.</p></li>
-<li><p>y_prediksi: Menampilkan hasil prediksi, yang merupakan prediksi kelas untuk setiap sampel dalam data uji yang telah mengalami reduksi dimensi PCA.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acc_pca</span><span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_prediksi</span><span class="p">)</span>
@@ -2074,23 +2096,22 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.7793594306049823
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.7206405693950177
 </pre></div>
 </div>
 </div>
 </div>
-<ol class="arabic simple">
-<li><p>acc_pca = accuracy_score(y_test, y_prediksi): Menggunakan fungsi accuracy_score dari modul sklearn.metrics untuk menghitung akurasi antara nilai sebenarnya (y_test) dan nilai prediksi setelah reduksi dimensi PCA (y_prediksi).</p></li>
-<li><p>print(“Akurasi:”, acc_pca): Menampilkan nilai akurasi pada output. Akurasi adalah rasio jumlah prediksi yang benar terhadap total jumlah prediksi pada data uji setelah mengalami reduksi dimensi PCA.</p></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dump</span><span class="p">(</span><span class="n">clfr</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;knnpca9.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dump</span><span class="p">(</span><span class="n">clfr</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;knnpca9fix.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>dump(clfr, open(‘knnpca9.pkl’, ‘wb’)): Menggunakan fungsi dump dari modul pickle untuk menyimpan model klasifikasi setelah reduksi dimensi PCA (clfr) ke dalam file ‘knnpca9.pkl’</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aplikasi-streamlit">
+<h1><strong>APLIKASI STREAMLIT</strong><a class="headerlink" href="#aplikasi-streamlit" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://luluatulmaknunahutspsd.streamlit.app/">https://luluatulmaknunahutspsd.streamlit.app/</a></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2148,10 +2169,19 @@ rmse_skew: Nilai skewness dari distribusi Root Mean Square Error.</p></li>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>KLASIFIKASI EMOSI menggunakan metode K-Nearest Neighbor</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instalasi-library-librosa"><strong>Instalasi Library Librosa</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis"><strong>TUJUAN ANALISIS</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-data"><strong>Deskripsi Data</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-statistik-sinyal-yang-akan-dijadikan-fitur"><strong>Menghitung statistik sinyal yang akan dijadikan fitur</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing"><strong>PRE-PROCESSING</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-audio"><strong>EKSTRAKSI AUDIO</strong></a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-standard-scaler"><strong>NORMALISASI STANDARD SCALER</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan"><strong>PEMODELAN</strong></a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pca"><strong>PCA</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-streamlit"><strong>APLIKASI STREAMLIT</strong></a></li>
 </ul>
 
   </nav></div>
@@ -2176,7 +2206,7 @@ Lu'luatul Maknunah
     
   <p class="copyright">
     
-      © Proyek Sains Data 2023
+      © Proyek Sains Data 2023.
       <br/>
     
   </p>
